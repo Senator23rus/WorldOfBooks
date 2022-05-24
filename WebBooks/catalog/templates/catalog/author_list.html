@@ -1,0 +1,14 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+
+    <h1>List of authors in DB</h1>
+
+    {% if author_list %}
+        {% for author in author_list.all %}
+            <p>{{ author.first_name }} {{ author.last_name }}</p>
+        {% endfor %}
+    {% else %}
+        <p>DB has no authors</p>
+    {% endif %}
+{% endblock %}
