@@ -13,5 +13,9 @@ urlpatterns = [
     url(r'^authors/$', views.AuthorListView.as_view(), name='authors'),
 ]
 urlpatterns += [
-    path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('django.contrib.auth.urls'), name='accounts'),
+]
+
+urlpatterns += [
+    url(r'^mybooks/$', views.LoanedBooksByUserListView.as_view(), name='my-borrowed'),
 ]
