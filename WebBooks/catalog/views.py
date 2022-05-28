@@ -1,8 +1,11 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import *
 from .models import Book, Author, BookInstance, Genre
+from .forms import AuthorsForm
 from django.views import generic
 from django.contrib.auth.mixins import LoginRequiredMixin
+
+
 
 
 def index(request):
@@ -37,3 +40,9 @@ class LoanedBooksByUserListView(LoginRequiredMixin, generic.ListView):
 
     def get_queryset(self):
         return BookInstance.objects.filter(borrower=self.request.user).filter(status__exact='2').order_by('due_back')
+
+def authors_add(request):
+    author = Author.objects.all()
+    authorsform = AuthorsForm()
+    return render(request, "catalog/authors_add.html",
+                  {"form": authorsform, "author": author})

@@ -28,6 +28,7 @@
             <li><a href="{% url 'index' %}">Main page</a></li>
             <li><a href="{% url 'books' %}">All books</a></li>
             <li><a href="{% url 'authors' %}">All authors</a></li>
+            <li><a href="{% url 'authors_add' %}">Input author</a></li>
         {% if user.is_authenticated %}
             <li>User: {{ user.get_username }}</li>
             <li><a href="{% url 'my-borrowed'%}">In order</a></li>
@@ -41,13 +42,14 @@
         <div class="col-sm-10">
             {% block content %}
 
-
+        </div>
+        <div class="col-sm-10">
 
             {% endblock %}
-            
+
             {% block pagination %}
-                {% if is_paginated %}
-                <div class="pagination">
+            {% if is_paginated %}
+            <div class="pagination">
                     <span class="page-links">
                         {% if page_obj.has_previous %}
                             <a href="{{ request.path }}?page={{ page_obj.previous_page_number }}">Previous page</a>
@@ -57,14 +59,14 @@
                             <a href="{{ request.path }}?page={{ page_obj.next_page_number }}">Next page</a>
                         {% endif %}
                     </span>
-                </div>
-                {% endif %}
+            </div>
+            {% endif %}
             {% endblock %}
             {% block footer %}
-                {% block copyright %}
+            {% block copyright %}
             <p>Copyright "Peoples and books", 2022. All rights reserved</p>
-               {% endblock %}
-             {% endblock %}
+            {% endblock %}
+            {% endblock %}
         </div>
     </div>
 </div>
